@@ -2,15 +2,35 @@ const inquirer = require("inquirer");
 const fs = require("fs");
 const generatePage = require("./src/html-template");
 
-const menuPrompt = [
+// define main menu options
+const menuPrompt =
   {
     type: "list",
     name: "menu",
     message: "What would you like to do now? (Select One)",
-    choices: ["Add an engineer", "Add an intern", "Finish building team"]
-  }
-];
+    choices: ["Add an engineer", "Add an intern", "Finish building team"],
+    default: 2
+  };
 
+  const mainMenu = teamInfo => {
+    return inquirer.prompt(menuPrompt)
+    .then(menuResponse => {
+      if (menuResponse.menu === "Add an engineer") {
+        promptEngineer(teamInfo);
+      }
+      else if (menuResponse.menu === "Add an intern") {
+        promptIntern(teamInfo);
+      }
+      else if (menuResponse.menu === "Finish building team") {
+        generatePage(teamInfo);
+      }
+      else {
+        return false;
+      }
+    })
+  }
+
+// ask initial questions about team manager
 const promptManager = () => {
   return inquirer.prompt([
     {
@@ -69,10 +89,17 @@ const promptManager = () => {
         }
       }
     }
-  ]);
+  ])
+  .then(teamInfo => {
+    return mainMenu(teamInfo);
+  });
 }
 
-const promptEngineer = () => {
+// prompt questions about an engineer employee
+const promptEngineer = teamInfo => {
+  if (!teamInfo.engineers) {
+    teamInfo.engineers = [];
+  }
   return inquirer.prompt ([
     {
       type: "input",
@@ -122,9 +149,17 @@ const promptEngineer = () => {
       message: "What is the engineer's GitHub username?"
     }
   ])
+  .then(engineerInfo => {
+    teamInfo.engineers.push(engineerInfo);
+    return mainMenu(teamInfo);
+  });
 }
 
-const promptIntern = () => {
+// prompt questions about an intern employee
+const promptIntern = teamInfo => {
+  if (!teamInfo.interns) {
+    teamInfo.interns = [];
+  }
   return inquirer.prompt ([
     {
       type: "input",
@@ -174,6 +209,10 @@ const promptIntern = () => {
       message: "What is the name of the school the intern attends?"
     }
   ])
+  .then(internInfo => {
+    teamInfo.interns.push(internInfo);
+    return mainMenu(teamInfo);
+  });
 }
 
 promptManager();
