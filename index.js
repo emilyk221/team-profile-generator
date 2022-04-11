@@ -10,25 +10,36 @@ const menuPrompt =
     message: "What would you like to do now? (Select One)",
     choices: ["Add an engineer", "Add an intern", "Finish building team"],
     default: 2
-  };
+};
 
-  const mainMenu = teamInfo => {
-    return inquirer.prompt(menuPrompt)
-    .then(menuResponse => {
-      if (menuResponse.menu === "Add an engineer") {
-        promptEngineer(teamInfo);
-      }
-      else if (menuResponse.menu === "Add an intern") {
-        promptIntern(teamInfo);
-      }
-      else if (menuResponse.menu === "Finish building team") {
-        generatePage(teamInfo);
-      }
-      else {
-        return false;
-      }
-    })
-  }
+const mainMenu = teamInfo => {
+  return inquirer.prompt(menuPrompt)
+  .then(menuResponse => {
+    if (menuResponse.menu === "Add an engineer") {
+      promptEngineer(teamInfo);
+      return false;
+    }
+    else if (menuResponse.menu === "Add an intern") {
+      promptIntern(teamInfo);
+      return false;
+    }
+    else if (menuResponse.menu === "Finish building team") {
+      console.log(teamInfo);
+      return generatePage(teamInfo);
+    }
+  })
+  .then(distHTML => {
+    if (distHTML) {
+      return writeToFile("./dist/index.html", distHTML);
+    }
+    else {
+      return false;
+    }
+  })
+  .catch(err => {
+    console.log(err);
+  });
+}
 
 // ask initial questions about team manager
 const promptManager = () => {
@@ -215,4 +226,20 @@ const promptIntern = teamInfo => {
   });
 }
 
-promptManager();
+function writeToFile(fileName, data) {
+  return new Promise((resolve, reject) =>{
+    fs.writeFile(fileName, data, err => {
+      if (err) {
+        reject(err);
+        return;
+      }
+      resolve({
+        ok: true,
+        message: "File created!"
+      });
+    });
+  });
+}
+
+promptManager()
+ 
