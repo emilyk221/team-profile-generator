@@ -1,13 +1,51 @@
 
 function generateEngineers(engArray) {
+  if (!engArray) {
+    return "";
+  }
   return `
-  
+  <section>
+    ${engArray
+    .map(({ engName, engId, engEmail, engGithub }) => {
+      return `
+      <div>
+        <h3>${engName}</h3>
+        <div><i class="fa fa-desktop" aria-hidden="true"></i>Engineer</div>
+      </div>
+      <div>
+        <div>ID: ${engId}</div>
+        <div>Email: <a>${engEmail}</a></div>
+        <div>Office number: ${engGithub}</div>
+      </div>
+      `;
+    })
+    .join("")}
+  </section>
   `;
 }
 
 function generateInterns(intArray) {
+  if (!intArray) {
+    return "";
+  }
   return `
-  
+  <section>
+    ${intArray
+    .map(({ internName, internId, internEmail, internSchool }) => {
+      return `
+      <div>
+        <h3>${internName}</h3>
+        <div><i class="fa fa-graduation-cap" aria-hidden="true"></i>Intern</div>
+      </div>
+      <div>
+        <div>ID: ${internId}</div>
+        <div>Email: <a>${internEmail}</a></div>
+        <div>Office number: ${internSchool}</div>
+      </div>
+      `;
+    })
+    .join("")}
+  </section>
   `;
 }
 
