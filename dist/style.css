@@ -1,0 +1,60 @@
+body {
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+#header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: teal;
+  color: white;
+  text-align: center;
+  height: 150px;
+}
+
+#header h1 {
+  font-size: 36px;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.card {
+  box-shadow:transparent;
+  width: 25%;
+  margin: 20px;
+}
+
+.title {
+  background-color: midnightblue;
+  color: white;
+  text-align: center;
+  padding: 5px;
+}
+
+.title h3 {
+  font-size: 24px;
+  margin: 10px;
+}
+
+.role {
+  font-size: 20px;
+}
+
+.body {
+  background-color: lightgray;
+  padding: 20px 10px;
+}
+
+.item {
+  background-color: white;
+  padding: 5px;
+  margin: 15px;
+}
+
+.item a {
+  text-decoration: none;
+}

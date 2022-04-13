@@ -24,7 +24,6 @@ const mainMenu = teamInfo => {
       return false;
     }
     else if (menuResponse.menu === "Finish building team") {
-      console.log(teamInfo);
       return generatePage(teamInfo);
     }
   })

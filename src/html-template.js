@@ -4,23 +4,23 @@ function generateEngineers(engArray) {
     return "";
   }
   return `
-  <section>
     ${engArray
     .map(({ engName, engId, engEmail, engGithub }) => {
       return `
-      <div>
-        <h3>${engName}</h3>
-        <div><i class="fa fa-desktop" aria-hidden="true"></i>Engineer</div>
-      </div>
-      <div>
-        <div>ID: ${engId}</div>
-        <div>Email: <a>${engEmail}</a></div>
-        <div>Office number: ${engGithub}</div>
-      </div>
+      <section class="card">
+        <div class="title">
+          <h3>${engName}</h3>
+          <div class="role"><i class="fa fa-desktop" aria-hidden="true"></i> Engineer</div>
+        </div>
+        <div class="body">
+          <div class="item">ID: ${engId}</div>
+          <div class="item">Email: <a href="mailto:${engEmail}">${engEmail}</a></div>
+          <div class="item">GitHub: <a href="https://github.com/${engGithub}">${engGithub}</a></div>
+        </div>
+      </section>
       `;
     })
     .join("")}
-  </section>
   `;
 }
 
@@ -29,23 +29,23 @@ function generateInterns(intArray) {
     return "";
   }
   return `
-  <section>
     ${intArray
     .map(({ internName, internId, internEmail, internSchool }) => {
       return `
-      <div>
-        <h3>${internName}</h3>
-        <div><i class="fa fa-graduation-cap" aria-hidden="true"></i>Intern</div>
-      </div>
-      <div>
-        <div>ID: ${internId}</div>
-        <div>Email: <a>${internEmail}</a></div>
-        <div>Office number: ${internSchool}</div>
-      </div>
+      <section class="card">
+        <div class="title">
+          <h3>${internName}</h3>
+          <div class="role"><i class="fa fa-graduation-cap" aria-hidden="true"></i> Intern</div>
+        </div>
+        <div class="body">
+          <div class="item">ID: ${internId}</div>
+          <div class="item">Email: <a href="mailto:${internEmail}">${internEmail}</a></div>
+          <div class="item">School: ${internSchool}</div>
+        </div>
+      </section>
       `;
     })
     .join("")}
-  </section>
   `;
 }
 
@@ -64,19 +64,19 @@ function generateHTML(data) {
   </head>
   
   <body>
-    <header>
+    <header id="header">
       <h1>My Team</h1>
     </header>
-    <main>
-      <section>
-        <div>
+    <main class="container">
+      <section class="card">
+        <div class="title">
           <h3>${data.managerName}</h3>
-          <div><i class="fa fa-briefcase" aria-hidden="true"></i>Manager</div>
+          <div class="role"><i class="fa fa-briefcase" aria-hidden="true"></i> Manager</div>
         </div>
-        <div>
-          <div>ID: ${data.managerId}</div>
-          <div>Email: <a>${data.managerEmail}</a></div>
-          <div>Office number: ${data.managerOfficeNum}</div>
+        <div class="body">
+          <div class="item">ID: ${data.managerId}</div>
+          <div class="item">Email: <a href="mailto:${data.managerEmail}">${data.managerEmail}</a></div>
+          <div class="item">Office number: ${data.managerOfficeNum}</div>
         </div>
       </section>
       ${generateEngineers(data.engineers)}
