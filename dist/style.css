@@ -23,7 +23,7 @@ body {
 }
 
 .card {
-  box-shadow:transparent;
+  box-shadow: 4px 4px 8px black;
   width: 25%;
   margin: 20px;
 }
