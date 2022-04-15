@@ -15,7 +15,7 @@ function generateEngineers(engArray) {
         <div class="body">
           <div class="item">ID: ${engId}</div>
           <div class="item">Email: <a href="mailto:${engEmail}">${engEmail}</a></div>
-          <div class="item">GitHub: <a href="https://github.com/${engGithub}">${engGithub}</a></div>
+          <div class="item">GitHub: <a href="https://github.com/${engGithub}" target="_blank">${engGithub}</a></div>
         </div>
       </section>
       `;
