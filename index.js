@@ -9,7 +9,7 @@ const menuPrompt =
     name: "menu",
     message: "What would you like to do now? (Select One)",
     choices: ["Add an engineer", "Add an intern", "Finish building team"],
-    default: 2
+    default: 0
 };
 
 const mainMenu = teamInfo => {

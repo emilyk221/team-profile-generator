@@ -17,6 +17,7 @@
 
   ## Usage
   You can use this application to create a webpage that displays information from all employees on your software development team.
+  You can view a video of this application in action [here](https://drive.google.com/file/d/1DGBtPVKIlPdD2nvi7OAKfgKqcf-CcB0F/view?usp=sharing).
 
   ## License
   
